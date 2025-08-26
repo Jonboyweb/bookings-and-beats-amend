@@ -5,43 +5,49 @@ import { Music, Headphones, Calendar, Users } from "lucide-react";
 const Artists = () => {
   const featuredArtists = [
     {
-      name: "DJ Marcus Steel",
-      genre: "House & Tech House",
-      description: "Leeds-based house music specialist with residencies across the North. Known for his deep, driving sets that keep the dance floor moving all night.",
-      achievements: ["Resident DJ at The Backroom", "10+ years experience", "Played at Leeds Festival"]
+      name: "DJ CP (@djcp01)",
+      genre: "RnB, Hip Hop, House, Garage",
+      description: "Resident DJ for Shhh! Saturday nights since 2012. One of Leeds' most established names in RnB and Hip Hop, bringing energy to packed dancefloors every week.",
+      achievements: ["Shhh! resident DJ", "10+ years at The Backroom", "Saturday night regular"]
     },
     {
-      name: "Sarah Valentine",
-      genre: "Jazz & Swing",
-      description: "Bringing authentic 1920s jazz to modern audiences. Her live performances perfectly complement The Backroom's prohibition-era atmosphere.",
-      achievements: ["Live jazz vocalist", "Period-authentic performances", "Regular Friday night performer"]
+      name: "DJ Dyl (@djdyl)",
+      genre: "RnB, Hip Hop, International",
+      description: "Friday night resident for La Fiesta | Bella Gente. Specialist in international sounds and party vibes, guaranteed to get the crowd moving.",
+      achievements: ["La Fiesta resident DJ", "International music specialist", "Friday night favorite"]
     },
     {
-      name: "The Prohibition Collective",
-      genre: "Electronic & Vintage Fusion",
-      description: "A rotating collective of DJs and musicians who blend contemporary beats with vintage samples, creating a unique soundscape.",
-      achievements: ["Exclusive to The Backroom", "Monthly showcase events", "Original productions"]
+      name: "DJ Indy (@djindyuk02)",
+      genre: "Throwbacks, Disco, Party Classics",
+      description: "Multi-night resident spinning at both Shhh! Saturdays and Nostalgia Sundays. Master of reading the crowd and delivering the perfect soundtrack.",
+      achievements: ["Multi-night resident", "Sunday Nostalgia host", "Crowd favorite"]
+    },
+    {
+      name: "DJ Diogo Vaz (@djdiogovaz)", 
+      genre: "Reggaeton, Latin, International",
+      description: "Bringing the heat to Friday's La Fiesta downstairs with authentic Latin sounds and reggaeton bangers that pack the dancefloor.",
+      achievements: ["Latin music specialist", "La Fiesta resident", "Downstairs floor expert"]
     }
   ];
 
   const musicStyles = [
     {
       icon: Music,
-      title: "House & Electronic",
-      description: "High-energy sets featuring the latest house, techno, and electronic tracks",
-      nights: "Saturday Sessions"
+      title: "Friday - La Fiesta",
+      description: "International Fiesta with RnB/Hip Hop upstairs and Reggaeton/Latin downstairs",
+      nights: "11pm - 6am"
     },
     {
       icon: Headphones,
-      title: "Jazz & Swing", 
-      description: "Live performances and DJ sets celebrating the golden age of jazz",
-      nights: "Friday Jazz Nights"
+      title: "Saturday - Shhh!", 
+      description: "Leeds' longest running RnB party est. 2012 with House, Garage and eclectic sounds",
+      nights: "11pm - 6am"
     },
     {
       icon: Users,
-      title: "Mixed Genre",
-      description: "Eclectic mixes spanning decades, from prohibition classics to modern hits",
-      nights: "Special Events"
+      title: "Sunday - Nostalgia",
+      description: "Throwbacks, Disco, RnB, Hip Hop and party classics with discounted drinks",
+      nights: "11pm - 5am"
     }
   ];
 
@@ -116,22 +122,24 @@ const Artists = () => {
           </div>
         </div>
 
-        {/* Artist Application CTA */}
+        {/* DJ Booking CTA */}
         <div className="text-center bg-gradient-dark p-12 rounded-lg border border-primary/20">
           <Calendar className="w-12 h-12 text-primary mx-auto mb-6" />
           <h3 className="font-display text-3xl font-semibold text-foreground mb-4">
-            Join Our Artist Roster
+            DJ Bookings & Submissions
           </h3>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Are you a talented DJ or musician who shares our passion for quality entertainment? 
-            We're always looking for exceptional artists to join The Backroom family.
+          <p className="text-lg text-muted-foreground mb-4 max-w-2xl mx-auto">
+            DJ hire available for private events from £85/hour. Open format available for private hire events.
+          </p>
+          <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto">
+            For DJ bookings and submissions contact: info@backroomleeds.co.uk
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="primary" size="lg">
-              Apply to Perform
+              Submit Demo
             </Button>
             <Button variant="outline" size="lg">
-              Submit Demo
+              Book DJ for Event
             </Button>
           </div>
         </div>

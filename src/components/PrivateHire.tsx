@@ -6,46 +6,46 @@ const PrivateHire = () => {
   const venueFeatures = [
     {
       icon: Building2,
-      title: "Flexible Spaces",
-      description: "Two distinct floors offering different atmospheres - intimate upstairs or spacious downstairs areas"
+      title: "Full Venue - 500 capacity",
+      description: "Complete exclusive use of both floors with multiple bars and dance areas"
     },
     {
       icon: Users,
-      title: "Capacity Options",
-      description: "Accommodate 50-250 guests with flexible seating and standing arrangements"
+      title: "Room One - 150 capacity", 
+      description: "Upstairs private room with own bar, ample seating, A/C, accessible entrance & toilet"
     },
     {
       icon: Music,
-      title: "Professional Sound",
-      description: "State-of-the-art sound system with DJ booth and lighting for any entertainment needs"
+      title: "Room Two - 350 capacity",
+      description: "Main bar & dance floor with state-of-art lighting, DJ booth, outdoor access"
     },
     {
       icon: Utensils,
-      title: "Full Service Bar",
-      description: "Complete bar service with prohibition-era cocktails and premium bottle selection"
+      title: "No Room Hire Fee",
+      description: "Thursday-Sunday bookings with no room hire fee (minimum spend may apply Mon-Wed)"
     }
   ];
 
   const eventTypes = [
     {
       title: "Corporate Events",
-      description: "Impress clients and colleagues with sophisticated networking events in our unique setting.",
-      features: ["Private bar area", "Catering options", "AV equipment", "Professional service"]
+      description: "Professional business events with dedicated service and flexible arrangements.",
+      features: ["No room hire fee Thu-Sun", "Own bar facilities", "A/C and accessible", "Professional service staff"]
     },
     {
-      title: "Christmas Parties",
-      description: "Celebrate the festive season with style in Leeds' most atmospheric venue.",
-      features: ["Festive decorations", "Party packages", "Group menus", "Entertainment options"]
+      title: "Christmas Parties", 
+      description: "Festive celebrations with Christmas decorations from end of November.",
+      features: ["Christmas decorations", "Bronze £30pp - Gold £45pp packages", "Welcome drinks included", "Festive buffet options"]
     },
     {
-      title: "Private Club Nights",
-      description: "Host your own exclusive club night with full venue hire and professional support.",
-      features: ["Complete venue hire", "Sound system access", "Door staff", "Bar management"]
+      title: "Private Parties",
+      description: "Birthday celebrations, weddings, graduations and special occasions.",
+      features: ["Available 7 days a week", "Welcome signs from £50", "Balloon arches from £150", "4ft letters/numbers £125 for 2"]
     },
     {
-      title: "Special Celebrations",
-      description: "From birthdays to anniversaries, make your celebration unforgettable.",
-      features: ["Customized setup", "Personal service", "Decoration options", "Photography area"]
+      title: "Student & Team Events",
+      description: "Perfect for student events, graduations, and corporate team building.",
+      features: ["Student-friendly packages", "Team night specials", "Graduation celebrations", "Group bookings welcome"]
     }
   ];
 
@@ -116,25 +116,27 @@ const PrivateHire = () => {
               Catering Options
             </h3>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <p>• Premium canapé selection</p>
-              <p>• Prohibition-era cocktail packages</p>
-              <p>• Champagne and wine service</p>
-              <p>• Late-night snack platters</p>
-              <p>• Custom menu creation available</p>
+              <p><strong>Pizza Menu (£13.50 + VAT each)</strong></p>
+              <p>• Margherita, Stilton & Potato, Ham & Ricotta</p>
+              <p>• Anchovies & Olives, Chorizo, Spicy Salami</p>
+              <p>• Vegan and gluten-free options available</p>
+              <p><strong>Cold Buffet (£14.50 + VAT pp)</strong></p>
+              <p>• Spring rolls, chicken skewers, quiche, cakes</p>
+              <p>• Tikka skewers, halloumi, Caesar salad options</p>
             </div>
           </Card>
 
           <Card className="p-8 gradient-card border border-primary/10">
             <Music className="w-8 h-8 text-primary mb-4" />
             <h3 className="font-display text-2xl font-semibold text-foreground mb-4">
-              Entertainment
+              Booking Terms
             </h3>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <p>• Professional DJ services</p>
-              <p>• Live jazz performances</p>
-              <p>• Themed entertainment acts</p>
-              <p>• Audio-visual equipment</p>
-              <p>• Lighting packages available</p>
+              <p><strong>Friday/Saturday:</strong> Private bookings must finish by midnight</p>
+              <p><strong>Sunday-Thursday:</strong> Private bookings can run until 6am</p>
+              <p><strong>No room hire fee Thursday-Sunday</strong></p>
+              <p><strong>Contact:</strong> 0113 2438666</p>
+              <p><strong>Email:</strong> info@backroomleeds.co.uk</p>
             </div>
           </Card>
         </div>

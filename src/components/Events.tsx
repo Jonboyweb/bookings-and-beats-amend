@@ -1,34 +1,43 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, Users, ExternalLink } from "lucide-react";
+import { Calendar, Clock, Users, ExternalLink, Music } from "lucide-react";
 
 const Events = () => {
   const upcomingEvents = [
     {
       id: 1,
-      title: "Saturday Night Sessions",
-      date: "Every Saturday",
-      time: "10:00 PM - 3:00 AM", 
-      description: "Join us for our legendary Saturday night sessions with Leeds' hottest DJs spinning the latest tracks.",
-      capacity: "200 guests",
-      status: "Weekly Event"
+      title: "Shhh!",
+      date: "Every Saturday", 
+      time: "11:00 PM - 6:00 AM",
+      description: "Est. 2012. Leeds' longest running weekly RnB party! Two floors of music with RnB, Hip Hop, House & Garage upstairs and eclectic sounds downstairs.",
+      capacity: "350 guests",
+      status: "Est. 2012",
+      image: "/venue-assets/event-artwork/shhh-saturday-event-art.jpg",
+      djs: "@djcp01, @danhillsonline, @djindyuk02, @vybzindahouse",
+      floors: "Upstairs: RnB, Hip Hop, House, Garage | Downstairs: Eclectic"
     },
     {
       id: 2,
-      title: "Friday Night Jazz",
+      title: "La Fiesta | Bella Gente", 
       date: "Every Friday",
-      time: "9:00 PM - 2:00 AM",
-      description: "Sophisticated jazz nights with live performances and prohibition-era cocktails.",
-      capacity: "150 guests", 
-      status: "Weekly Event"
+      time: "11:00 PM - 6:00 AM",
+      description: "The city's best International Fiesta! Two floors of music with 4 DJs and live dancers. RnB/Hip Hop upstairs, Reggaeton/Latin downstairs.",
+      capacity: "350 guests",
+      status: "Weekly Fiesta",
+      image: "/venue-assets/event-artwork/bella-gente-friday-event-art.jpeg",
+      djs: "@djdyl, @djdiogovaz, @djborris_paulo, @onlydjflex",
+      floors: "Upstairs: RnB/Hip Hop | Downstairs: Reggaeton/Latin"
     },
     {
       id: 3,
-      title: "Prohibition Party",
-      date: "Last Saturday of Month",
-      time: "8:00 PM - 4:00 AM",
-      description: "Our signature monthly event featuring 1920s themed entertainment, dress code encouraged.",
-      capacity: "250 guests",
-      status: "Monthly Special"
+      title: "Nostalgia",
+      date: "Every Sunday", 
+      time: "11:00 PM - 5:00 AM",
+      description: "Sunday night mash up of music with discounted drinks & late-night license. Throwbacks, Disco, RnB, Hip Hop and party classics all night long.",
+      capacity: "350 guests",
+      status: "Sunday Sessions",
+      image: "/venue-assets/event-artwork/nostalgia-sunday-event-art.jpg",
+      djs: "@djindyuk02 & guests",
+      floors: "Throwbacks, Disco, RnB, Hip Hop, Party Classics"
     }
   ];
 
@@ -37,11 +46,11 @@ const Events = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl lg:text-6xl font-bold text-foreground mb-6">
-            Upcoming Events
+            Regular Events
           </h2>
           <div className="w-24 h-px bg-gradient-primary mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Experience the best of Leeds nightlife with our curated weekly events and exclusive monthly celebrations.
+            Join us every week for Leeds' best underground club nights. Two floors of music, top DJs, and unforgettable nights until 6am.
           </p>
         </div>
 
@@ -49,48 +58,63 @@ const Events = () => {
           {upcomingEvents.map((event) => (
             <div 
               key={event.id}
-              className="gradient-card p-8 rounded-lg shadow-card border border-primary/10 hover:shadow-luxury transition-luxury"
+              className="gradient-card rounded-lg shadow-card border border-primary/10 hover:shadow-luxury transition-luxury overflow-hidden"
             >
-              <div className="mb-6">
-                <span className="inline-block px-3 py-1 text-xs font-semibold text-primary bg-primary/10 rounded-full mb-4">
-                  {event.status}
-                </span>
+              {/* Event Image */}
+              <div className="relative h-48 bg-cover bg-center" style={{ backgroundImage: `url(${event.image})` }}>
+                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute top-4 left-4">
+                  <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-primary rounded-full">
+                    {event.status}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-6">
                 <h3 className="font-display text-2xl font-semibold text-foreground mb-3">
                   {event.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed mb-4">
                   {event.description}
                 </p>
-              </div>
 
-              <div className="space-y-3 mb-8">
-                <div className="flex items-center gap-3 text-sm">
-                  <Calendar className="w-4 h-4 text-primary" />
-                  <span className="text-foreground">{event.date}</span>
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-3 text-sm">
+                    <Calendar className="w-4 h-4 text-primary" />
+                    <span className="text-foreground">{event.date}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Clock className="w-4 h-4 text-primary" />
+                    <span className="text-foreground">{event.time}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Users className="w-4 h-4 text-primary" />
+                    <span className="text-foreground">{event.capacity}</span>
+                  </div>
+                  <div className="flex items-start gap-3 text-sm">
+                    <Music className="w-4 h-4 text-primary mt-0.5" />
+                    <span className="text-foreground">{event.floors}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <Clock className="w-4 h-4 text-primary" />
-                  <span className="text-foreground">{event.time}</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <Users className="w-4 h-4 text-primary" />
-                  <span className="text-foreground">{event.capacity}</span>
-                </div>
-              </div>
 
-              <div className="flex gap-3">
-                <Button 
-                  variant="primary" 
-                  size="sm" 
-                  className="flex-1"
-                  onClick={() => window.open('https://www.fatsoma.com/p/backroomleeds', '_blank')}
-                >
-                  Get Tickets
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Button>
-                <Button variant="outline" size="sm" className="flex-1">
-                  Book Table
-                </Button>
+                <div className="mb-4 p-3 bg-primary/5 rounded-lg">
+                  <p className="text-xs font-semibold text-primary mb-1">DJs:</p>
+                  <p className="text-sm text-foreground">{event.djs}</p>
+                </div>
+
+                <div className="flex gap-3">
+                  <Button 
+                    variant="primary" 
+                    size="sm" 
+                    className="flex-1"
+                  >
+                    Get Tickets
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </Button>
+                  <Button variant="outline" size="sm" className="flex-1">
+                    Book Table
+                  </Button>
+                </div>
               </div>
             </div>
           ))}

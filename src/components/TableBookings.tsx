@@ -5,49 +5,76 @@ import { Check, Clock, MapPin, PoundSterling, Users } from "lucide-react";
 const TableBookings = () => {
   const packages = [
     {
-      name: "Essential Package",
-      price: "£150",
-      description: "Perfect for intimate gatherings",
+      name: "HUSH & SHUSH",
+      price: "£170",
+      description: "Perfect starter package",
       features: [
-        "Reserved table for up to 4 guests", 
-        "1 bottle of house spirits",
-        "Mixers and garnishes included",
-        "Duration: Full night",
-        "Upstairs or downstairs seating"
+        "Bottle of Smirnoff", 
+        "2 jugs mixer",
+        "Bottle of Prosecco",
+        "8 Tequila Rose shots",
+        "Priority admission",
+        "Waitress service"
       ]
     },
     {
-      name: "Premium Package", 
-      price: "£300",
-      description: "Ideal for celebrations",
+      name: "SPEAK WHISKEY TO ME", 
+      price: "£280",
+      description: "Perfect for groups",
       features: [
-        "Reserved table for up to 8 guests",
-        "2 bottles of premium spirits", 
-        "Selection of mixers and garnishes",
-        "Complimentary bar snacks",
-        "Priority seating location"
+        "Bottle of Jack Daniels",
+        "Bottle of Bacardi Spiced", 
+        "4 jugs mixer",
+        "Priority admission",
+        "Waitress service"
       ],
       popular: true
     },
     {
-      name: "VIP Package",
-      price: "£500", 
+      name: "AFTER HOURS",
+      price: "£400", 
+      description: "Premium experience",
+      features: [
+        "8 Grey Goose Espresso Martinis",
+        "Bottle of Ciroc",
+        "Bottle of Ciroc Flavours", 
+        "4 jugs mixer",
+        "Priority admission",
+        "Waitress service"
+      ]
+    },
+    {
+      name: "MIDNIGHT MADNESS",
+      price: "£580", 
       description: "The ultimate luxury experience",
       features: [
-        "Reserved table for up to 12 guests",
-        "3 bottles of top-shelf spirits",
-        "Premium mixers and garnishes", 
-        "Dedicated table service",
-        "Best location guarantee"
+        "Premium Spirit of choice",
+        "Bottle of Moet",
+        "Don Julio Blanco", 
+        "Hennessy VS",
+        "6 jugs mixer",
+        "Priority admission & VIP treatment"
       ]
     }
   ];
 
   const bottleMenu = [
-    { category: "Vodka", items: ["Grey Goose - £120", "Ciroc - £130", "Belvedere - £125"] },
-    { category: "Whiskey", items: ["Jameson - £110", "Jack Daniels - £115", "Macallan 12yr - £180"] },
-    { category: "Gin", items: ["Hendricks - £105", "Bombay Sapphire - £95", "Tanqueray 10 - £120"] },
-    { category: "Champagne", items: ["Moet Chandon - £85", "Dom Perignon - £250", "Cristal - £400"] }
+    { 
+      category: "Vodka", 
+      items: ["Smirnoff - £120", "Belvedere - £160", "Ciroc - £160", "Grey Goose - £180"] 
+    },
+    { 
+      category: "Whiskey", 
+      items: ["Jack Daniels - £160", "Johnnie Walker Black - £170"] 
+    },
+    { 
+      category: "Rum & Gin", 
+      items: ["Bacardi - £140", "Havana 7 - £160", "Tanqueray - £130", "Hendricks - £150"] 
+    },
+    { 
+      category: "Champagne", 
+      items: ["Perrier Jouet - £85", "Moet - £90", "Dom Perignon - £250"] 
+    }
   ];
 
   return (
@@ -69,25 +96,25 @@ const TableBookings = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Card className="p-6 text-center gradient-card border border-primary/10">
             <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
-            <h3 className="font-semibold text-foreground mb-2">Arrival Times</h3>
-            <p className="text-sm text-muted-foreground">Between 11:00 PM - 1:00 AM</p>
+            <h3 className="font-semibold text-foreground mb-2">Table Benefits</h3>
+            <p className="text-sm text-muted-foreground">Priority admission & waitress service included</p>
           </Card>
           <Card className="p-6 text-center gradient-card border border-primary/10">
             <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
-            <h3 className="font-semibold text-foreground mb-2">Seating Options</h3>
-            <p className="text-sm text-muted-foreground">Upstairs or Downstairs Available</p>
+            <h3 className="font-semibold text-foreground mb-2">Two Levels</h3>
+            <p className="text-sm text-muted-foreground">Choose upstairs main floor or downstairs private area</p>
           </Card>
           <Card className="p-6 text-center gradient-card border border-primary/10">
             <PoundSterling className="w-8 h-8 text-primary mx-auto mb-3" />
-            <h3 className="font-semibold text-foreground mb-2">Booking Deposit</h3>
-            <p className="text-sm text-muted-foreground">£50 required, rest paid on arrival</p>
+            <h3 className="font-semibold text-foreground mb-2">Booking Terms</h3>
+            <p className="text-sm text-muted-foreground">£50 deposit, refunded if cancelled 48hrs+ in advance</p>
           </Card>
         </div>
 
         {/* Packages */}
         <div className="mb-16">
           <h3 className="font-display text-3xl font-semibold text-center mb-12">Table Packages</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {packages.map((pkg, index) => (
               <Card 
                 key={index} 

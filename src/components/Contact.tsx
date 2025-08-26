@@ -7,49 +7,49 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Address",
-      details: ["The Backroom", "Leeds City Centre", "West Yorkshire", "LS1 XXX"]
+      details: ["50a Call Lane, Leeds LS1 6DT", "Hidden under the railway bridge", "Bottom of Call Lane"]
     },
     {
       icon: Phone,
-      title: "Phone",
-      details: ["+44 113 XXX XXXX", "Available during opening hours"]
+      title: "Phone", 
+      details: ["0113 2438666", "Available during opening hours"]
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["info@thebackroomleeds.co.uk", "Response within 24 hours"]
+      details: ["info@backroomleeds.co.uk", "Response within 24 hours"]
     },
     {
       icon: Clock,
       title: "Opening Hours",
-      details: ["Friday: 9:00 PM - 2:00 AM", "Saturday: 10:00 PM - 3:00 AM", "Private events by arrangement"]
+      details: ["Friday & Saturday: 11pm - 6am", "Sunday: 11pm - 5am", "Private hire: 7 days a week"]
     }
   ];
 
   const enquiryTypes = [
     {
       icon: MessageSquare,
-      title: "General Enquiries",
-      description: "Questions about events, opening times, or general information",
-      action: "Send Message"
+      title: "Table Bookings",
+      description: "Reserve your table for Friday, Saturday or Sunday nights with our drink packages",
+      action: "Book Table"
     },
     {
       icon: Briefcase,
-      title: "Lost Property",
-      description: "Lost something during your visit? We'll help you track it down",
-      action: "Report Item"
+      title: "Private Hire",
+      description: "Corporate events, birthday parties, Christmas parties - no room hire fee Thu-Sun",
+      action: "Get Quote"
     },
     {
       icon: Mail,
-      title: "Job Enquiries",
-      description: "Interested in joining our team? We're always looking for talent",
-      action: "Apply Now"
+      title: "DJ Bookings",
+      description: "DJ submissions and bookings for events. DJ hire available from £85/hour",
+      action: "Submit Demo"
     },
     {
       icon: MessageSquare,
-      title: "Feedback",
-      description: "Share your experience or suggestions for improvement",
-      action: "Give Feedback"
+      title: "General Info",
+      description: "Questions about our events, opening times, or venue information",
+      action: "Ask Question"
     }
   ];
 
@@ -63,8 +63,8 @@ const Contact = () => {
           </h2>
           <div className="w-24 h-px bg-gradient-primary mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Get in touch with The Backroom team. Whether you have questions about events, 
-            need to report lost property, or want to join our team, we're here to help.
+            Get in touch with The Backroom Leeds team. For table bookings, private hire, DJ submissions, 
+            or general enquiries - we're here to help make your night unforgettable.
           </p>
         </div>
 
@@ -122,15 +122,18 @@ const Contact = () => {
             <div className="bg-muted/50 rounded-lg p-12 text-center mb-6">
               <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
               <p className="text-muted-foreground">
-                Interactive map will be available here showing our exact location in Leeds city centre.
+                Located under the railway bridge at the bottom of Call Lane - look for the hidden entrance!
               </p>
             </div>
             <div className="space-y-3 text-sm">
               <p className="text-muted-foreground">
-                <strong className="text-foreground">Transport Links:</strong> Close to Leeds train station and bus routes
+                <strong className="text-foreground">Age Restriction:</strong> 18+ venue with ID required
               </p>
               <p className="text-muted-foreground">
-                <strong className="text-foreground">Parking:</strong> Street parking and nearby car parks available
+                <strong className="text-foreground">Transport:</strong> Central Leeds location, close to train station
+              </p>
+              <p className="text-muted-foreground">
+                <strong className="text-foreground">Social:</strong> @backroomleeds (Instagram, Facebook, Twitter)
               </p>
             </div>
           </Card>
@@ -150,10 +153,10 @@ const Contact = () => {
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">Subject</label>
                 <select className="w-full p-3 bg-input border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-luxury">
+                  <option>Table Booking Enquiry</option>
+                  <option>Private Hire Quote</option>
+                  <option>DJ Submission</option>
                   <option>General Enquiry</option>
-                  <option>Lost Property</option>
-                  <option>Job Application</option>
-                  <option>Feedback</option>
                 </select>
               </div>
               <div>
