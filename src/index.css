@@ -1,105 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Prohibition Era Design System - The Backroom Leeds */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Core prohibition palette */
+    --background: 20 14% 8%;          /* Rich dark charcoal */
+    --foreground: 43 74% 90%;         /* Warm champagne white */
+    
+    /* Brand colors */
+    --primary: 43 74% 66%;            /* Rich gold */
+    --primary-foreground: 20 14% 8%;  /* Dark background */
+    --primary-muted: 43 24% 46%;      /* Muted gold */
+    
+    /* Luxury accents */
+    --secondary: 0 45% 25%;           /* Deep burgundy */
+    --secondary-foreground: 43 74% 90%; /* Champagne */
+    
+    --accent: 28 76% 67%;             /* Warm copper */
+    --accent-foreground: 20 14% 8%;   /* Dark text */
+    
+    /* Surface colors */
+    --card: 20 20% 12%;               /* Slightly lighter dark */
+    --card-foreground: 43 74% 90%;    /* Champagne text */
+    
+    --muted: 20 15% 15%;              /* Muted dark surface */
+    --muted-foreground: 43 30% 60%;   /* Muted champagne */
+    
+    /* Interactive states */
+    --border: 43 20% 25%;             /* Subtle gold border */
+    --input: 20 20% 18%;              /* Input background */
+    --ring: 43 74% 66%;               /* Focus ring gold */
+    
+    /* Status colors */
+    --destructive: 0 84% 60%;         /* Error red */
+    --destructive-foreground: 43 74% 90%; /* Light text */
+    
+    /* Popover */
+    --popover: 20 20% 12%;
+    --popover-foreground: 43 74% 90%;
+    
+    --radius: 0.75rem;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  /* Art Deco Pattern Background */
+  .art-deco-bg {
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(43 74% 66% / 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(28 76% 67% / 0.03) 0%, transparent 50%),
+      linear-gradient(135deg, transparent 25%, hsl(43 74% 66% / 0.01) 25%, hsl(43 74% 66% / 0.01) 50%, transparent 50%);
+  }
+  
+  /* Luxury gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(43 74% 66%), hsl(28 76% 67%));
+  }
+  
+  .gradient-dark {
+    background: linear-gradient(180deg, hsl(20 14% 8%), hsl(20 20% 4%));
+  }
+  
+  .gradient-card {
+    background: linear-gradient(145deg, hsl(20 20% 12%), hsl(20 15% 15%));
+  }
+
+  /* Luxury shadows */
+  .shadow-luxury {
+    box-shadow: 0 25px 50px -12px hsl(43 74% 66% / 0.25);
+  }
+  
+  .shadow-card {
+    box-shadow: 0 10px 30px -5px hsl(0 0% 0% / 0.3);
+  }
+  
+  .shadow-glow {
+    box-shadow: 0 0 40px hsl(43 74% 66% / 0.3);
+  }
+
+  /* Smooth luxury transitions */
+  .transition-luxury {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(20 15% 15%);
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(43 74% 66%);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(43 74% 56%);
   }
 }
