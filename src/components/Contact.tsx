@@ -1167,13 +1167,13 @@ const Contact = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                         {[
                           { id: 'bar-staff', title: 'Bar Staff', description: 'Bartenders and cocktail makers' },
+                          { id: 'table-service', title: 'Table Service Staff', description: 'Table and bottle service' },
                           { id: 'bar-support', title: 'Bar Support', description: 'Glass collectors, runners' },
                           { id: 'management', title: 'Management', description: 'Supervisor and management roles' },
                           { id: 'sales-events', title: 'Sales & Events', description: 'Event coordination and sales' },
                           { id: 'djs', title: 'DJs', description: 'Resident and guest DJ positions' },
-                          { id: 'performers', title: 'Performers', description: 'Entertainment and performance' },
-                          { id: 'security', title: 'Security', description: 'Door staff and security' },
-                          { id: 'kitchen', title: 'Kitchen Staff', description: 'Food preparation and service' },
+                          { id: 'performers', title: 'Performers', description: 'Entertainers and performers' },
+                          { id: 'stock-and-deliveries', title: 'Cellar and Maintenance', description: 'Deliveries, stock  and maintenance' },
                           { id: 'other', title: 'Other', description: 'Other positions not listed' }
                         ].map((job) => (
                           <div

@@ -3,8 +3,8 @@ import { loadStripe } from '@stripe/stripe-js';
 import { supabaseService } from '@/lib/supabase';
 import type { TableBooking } from '@/lib/supabase';
 
-// For demo purposes - this would be your actual Stripe publishable key
-const stripePromise = loadStripe('pk_test_demo_key_replace_with_actual_key');
+// Load Stripe with your actual publishable key
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_51RgoEG2cvKVqmxJpCUWCSmJXbxAE0DdTdmD3YHIaF9xw9R7mJw8rbGPCSsX2890yjLZ2LkEnI2FmT7Y1LADa421c00iq9QfyrK');
 
 interface TableBookingData {
   firstName: string;
