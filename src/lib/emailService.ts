@@ -32,7 +32,7 @@ export const emailService = {
           subject: emailData.subject,
           content: emailData.content,
           customerName: emailData.customerName,
-          replyToEmail: 'admin@backroomleads.co.uk',
+          replyToEmail: 'sales@backroomleeds.co.uk',
           replyToName: 'The Backroom Leeds'
         })
       });
@@ -83,7 +83,7 @@ We'll confirm availability within 24 hours and let you know the next steps.
 
 Best regards,
 The Backroom Leeds Team
-admin@backroomleads.co.uk
+admin@backroomleeds.co.uk
 0113 2438666`
         };
 
@@ -130,7 +130,7 @@ Application Details:
 
 We've received your application and will review it carefully. If your profile matches our requirements, we'll contact you within the next two weeks to discuss next steps.
 
-Please remember to email your CV to admin@backroomleads.co.uk with the subject "Job Application - ${formData.jobType}"
+Please remember to email your CV to admin@backroomleeds.co.uk with the subject "Job Application - ${formData.jobType}"
 
 Best regards,
 The Backroom Leeds HR Team
@@ -154,7 +154,7 @@ ${inquiryType === 'feedback' ? 'We really appreciate you taking the time to shar
 
 Best regards,
 The Backroom Leeds Team
-admin@backroomleads.co.uk
+admin@backroomleeds.co.uk
 0113 2438666`
         };
 
@@ -241,7 +241,7 @@ Please log into the admin dashboard to view and respond to this ${inquiryType.to
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          to: 'admin@backroomleads.co.uk',
+          to: 'admin@backroomleeds.co.uk',
           subject: `New ${inquiryType} - ${customerName}`,
           content: adminContent,
           customerName: 'The Backroom Leeds Admin',
