@@ -703,7 +703,7 @@ const Contact = () => {
                       
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
-                          Event Night *
+                          Arrival Time *
                         </label>
                         <select
                           name="bookingTime"
@@ -712,10 +712,16 @@ const Contact = () => {
                           className="w-full p-3 bg-input border border-border rounded-lg text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-luxury"
                           required
                         >
-                          <option value="">Select event</option>
-                          <option value="friday-la-fiesta">Friday - La Fiesta (11pm-6am)</option>
-                          <option value="saturday-shhh">Saturday - Shhh! (11pm-6am)</option>
-                          <option value="sunday-nostalgia">Sunday - Nostalgia (11pm-5am)</option>
+                          <option value="">Select arrival time</option>
+                          <option value="23:00">11:00 PM</option>
+                          <option value="23:15">11:15 PM</option>
+                          <option value="23:30">11:30 PM</option>
+                          <option value="23:45">11:45 PM</option>
+                          <option value="00:00">12:00 AM</option>
+                          <option value="00:15">12:15 AM</option>
+                          <option value="00:30">12:30 AM</option>
+                          <option value="00:45">12:45 AM</option>
+                          <option value="01:00">1:00 AM</option>
                         </select>
                       </div>
                       
@@ -731,7 +737,7 @@ const Contact = () => {
                           required
                         >
                           <option value="">Select party size</option>
-                          {[...Array(11)].map((_, i) => (
+                          {[...Array(24)].map((_, i) => (
                             <option key={i + 2} value={i + 2}>{i + 2} people</option>
                           ))}
                         </select>
