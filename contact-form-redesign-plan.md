@@ -115,10 +115,23 @@ Two options:
 
 This plan transforms the simple contact form into a comprehensive booking and enquiry system while maintaining the site's design consistency and adding significant business value through structured data collection and enhanced user experience.
 
-## Questions for Clarification
+## Implementation Decisions (Confirmed)
 
-1. Should the table booking form include a visual table selection interface using the SVG table plans?
-2. Do you want real-time availability checking or just booking requests?
-3. Should we include payment integration for the £50 deposit or handle offline?
-4. Any specific validation rules or business logic for bookings?
-5. Should private hire pricing be displayed or kept as "contact for quote"?
+1. **Visual Table Selection**: No visual table selection interface - keep it simple with dropdown/text selection
+2. **Availability Checking**: Just booking requests - no real-time availability checking needed
+3. **Payment Integration**: YES - Implement Stripe payment integration for £50 pre-authorization deposit system:
+   - Pre-authorize £50 when booking request is submitted
+   - Capture funds when table is confirmed by venue
+   - Release authorization if no availability
+   - See `stripe-preauth-implementation.md` for technical details
+4. **Validation Rules**: Standard form validation (TBD during implementation)
+5. **Private Hire Pricing**: Keep as "contact for quote" - no pricing display needed
+
+## Next Steps
+
+1. Implement multi-tab contact form structure
+2. Build table booking section with package selection
+3. Integrate Stripe payment processing for deposits
+4. Add enhanced private hire form fields
+5. Implement careers section with job type selectors
+6. Set up form validation and submission handling
