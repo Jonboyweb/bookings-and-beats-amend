@@ -45,8 +45,13 @@
 1. **Table Bookings Management**
    - List view with filtering and sorting
    - Detail view with customer info and booking details
+   - **Stripe Payment Integration**:
+     - **Confirm Booking Button**: Capture authorized £50 deposit via Stripe API
+     - **Cancel Booking Button**: Release authorized payment (customer not charged)
+     - Real-time payment status updates (authorized → captured/cancelled)
+     - Payment history and transaction details
    - Status update functionality (pending → confirmed/cancelled)
-   - Payment status tracking
+   - Payment status tracking with visual indicators
    - Export capabilities
 
 2. **Private Hire Inquiries**
@@ -84,6 +89,127 @@
    - Email template management
    - System configuration
    - User management (if multiple admins needed)
+
+## Stripe Payment Integration
+
+### Current Payment Flow (Already Implemented)
+1. **Customer Booking**: Customer fills table booking form
+2. **Payment Authorization**: Stripe pre-authorizes £50 deposit (not charged)
+3. **Database Storage**: Booking saved with `payment_status: 'authorized'`
+4. **Email Notifications**: Customer and admin receive notifications
+
+### Admin Dashboard Payment Actions
+**For Each Table Booking with `payment_status: 'authorized'`:**
+
+#### 1. Confirm Booking Action
+```typescript
+// When admin confirms table availability
+const confirmBooking = async (paymentIntentId: string, bookingId: string) => {
+  // 1. Capture the authorized payment via Stripe API
+  const captureResult = await stripe.paymentIntents.capture(paymentIntentId);
+  
+  // 2. Update booking status in database
+  await supabase
+    .from('table_bookings')
+    .update({ 
+      status: 'confirmed', 
+      payment_status: 'captured' 
+    })
+    .eq('id', bookingId);
+    
+  // 3. Send confirmation email to customer
+  // 4. Update admin dashboard in real-time
+}
+```
+
+#### 2. Cancel Booking Action
+```typescript
+// When no table availability
+const cancelBooking = async (paymentIntentId: string, bookingId: string) => {
+  // 1. Cancel the payment authorization via Stripe API
+  const cancelResult = await stripe.paymentIntents.cancel(paymentIntentId);
+  
+  // 2. Update booking status in database
+  await supabase
+    .from('table_bookings')
+    .update({ 
+      status: 'cancelled', 
+      payment_status: 'cancelled' 
+    })
+    .eq('id', bookingId);
+    
+  // 3. Send cancellation email explaining no availability
+  // 4. Customer is never charged - authorization is released
+}
+```
+
+### Backend API Endpoints Needed
+```javascript
+// POST /api/admin/bookings/:id/confirm
+app.post('/api/admin/bookings/:id/confirm', async (req, res) => {
+  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+  const { paymentIntentId } = req.body;
+  
+  try {
+    // Capture the authorized payment
+    const paymentIntent = await stripe.paymentIntents.capture(paymentIntentId);
+    
+    // Update database, send emails, etc.
+    res.json({ success: true, paymentIntent });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// POST /api/admin/bookings/:id/cancel
+app.post('/api/admin/bookings/:id/cancel', async (req, res) => {
+  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+  const { paymentIntentId } = req.body;
+  
+  try {
+    // Cancel the payment authorization
+    const paymentIntent = await stripe.paymentIntents.cancel(paymentIntentId);
+    
+    // Update database, send emails, etc.
+    res.json({ success: true, paymentIntent });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+```
+
+### Admin UI Components
+
+#### Payment Status Badges
+- 🟡 **Authorized**: £50 pre-authorized, awaiting confirmation
+- 🟢 **Captured**: Payment captured, booking confirmed  
+- 🔴 **Cancelled**: Authorization released, customer not charged
+- ⚪ **Pending**: No payment authorization yet
+
+#### Booking Detail Actions
+```jsx
+<div className="payment-actions">
+  {paymentStatus === 'authorized' && (
+    <>
+      <Button onClick={handleConfirmBooking} variant="default">
+        ✅ Confirm Booking & Capture £50
+      </Button>
+      <Button onClick={handleCancelBooking} variant="destructive">
+        ❌ Cancel - No Tables Available
+      </Button>
+    </>
+  )}
+  
+  <PaymentHistory paymentIntentId={paymentIntentId} />
+</div>
+```
+
+### Business Benefits
+- **Instant Revenue**: Capture deposits immediately when confirming bookings
+- **Customer Protection**: Only charge when service can be provided
+- **Reduced Admin Work**: Single-click booking confirmation/cancellation
+- **Professional Service**: Immediate email confirmations with payment status
+- **Cash Flow**: Predictable revenue from confirmed bookings
 
 ## Technical Implementation Details
 
@@ -168,6 +294,10 @@ src/
 │   │   ├── Forms/
 │   │   │   ├── StatusUpdateForm.tsx
 │   │   │   └── EmailForm.tsx
+│   │   ├── Stripe/
+│   │   │   ├── PaymentActions.tsx
+│   │   │   ├── PaymentStatusBadge.tsx
+│   │   │   └── PaymentHistory.tsx
 │   │   └── Dashboard/
 │   │       ├── StatsCards.tsx
 │   │       ├── RecentActivity.tsx
