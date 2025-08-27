@@ -58,7 +58,7 @@ export const useTableBookingPayment = () => {
     const mockConfirmation = await new Promise<any>((resolve, reject) => {
       setTimeout(() => {
         // Simulate random success/failure for demo
-        const success = Math.random() > 0.1; // 90% success rate for demo
+        const success = true; // Always succeed for testing purposes
         
         if (success) {
           resolve({

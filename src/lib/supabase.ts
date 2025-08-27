@@ -4,7 +4,11 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'http://127.0.0.1:54321';
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0';
 
+// For server-side operations that need elevated permissions (like form submissions)
+const supabaseServiceKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU';
+
 export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
 
 // Database interfaces for type safety
 export interface TableBooking {
@@ -79,7 +83,7 @@ export interface GeneralInquiry {
 export const supabaseService = {
   // Table bookings
   async createTableBooking(booking: Omit<TableBooking, 'id' | 'created_at' | 'updated_at'>) {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('table_bookings')
       .insert([booking])
       .select()
@@ -90,7 +94,7 @@ export const supabaseService = {
   },
 
   async updateTableBookingStatus(paymentIntentId: string, status: string, paymentStatus: string) {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('table_bookings')
       .update({ status, payment_status: paymentStatus, updated_at: new Date().toISOString() })
       .eq('payment_intent_id', paymentIntentId)
@@ -103,7 +107,7 @@ export const supabaseService = {
 
   // Private hire inquiries
   async createPrivateHireInquiry(inquiry: Omit<PrivateHireInquiry, 'id' | 'created_at'>) {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('private_hire_inquiries')
       .insert([inquiry])
       .select()
@@ -115,7 +119,7 @@ export const supabaseService = {
 
   // Career applications
   async createCareerApplication(application: Omit<CareerApplication, 'id' | 'created_at'>) {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('career_applications')
       .insert([application])
       .select()
@@ -127,7 +131,7 @@ export const supabaseService = {
 
   // General inquiries
   async createGeneralInquiry(inquiry: Omit<GeneralInquiry, 'id' | 'created_at'>) {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('general_inquiries')
       .insert([inquiry])
       .select()

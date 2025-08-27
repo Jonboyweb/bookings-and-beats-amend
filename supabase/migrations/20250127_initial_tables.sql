@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS public.table_bookings (
     -- Booking details
     booking_date DATE NOT NULL,
     booking_time VARCHAR(50) NOT NULL,
-    party_size INTEGER NOT NULL CHECK (party_size >= 2 AND party_size <= 12),
+    party_size INTEGER NOT NULL CHECK (party_size >= 2 AND party_size <= 25),
     
     -- Package information
     package_type VARCHAR(20) NOT NULL CHECK (package_type IN ('preset', 'custom')),
