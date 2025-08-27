@@ -1,6 +1,5 @@
-// Email service for sending confirmation emails via SendGrid
-// Note: This implementation includes both frontend structure and actual email sending
-// For production, you may want to move sensitive email operations to a backend API
+// Email service for sending confirmation emails via backend API
+// Uses the Node.js backend server to handle SendGrid integration
 
 interface EmailData {
   to: string;
@@ -11,59 +10,43 @@ interface EmailData {
 }
 
 export const emailService = {
-  // Send confirmation email for form submissions
+  // Send confirmation email for form submissions via backend API
   async sendConfirmationEmail(emailData: EmailData): Promise<boolean> {
     try {
-      // Check if SendGrid API key is configured
-      const apiKey = import.meta.env.VITE_SENDGRID_API_KEY;
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3002';
       
-      if (!apiKey) {
-        console.log('📧 SendGrid API key not configured, using mock email sending:', {
-          to: emailData.to,
-          subject: emailData.subject,
-          from: 'info@backroomleeds.co.uk',
-          template: 'inquiry_confirmation',
-          data: emailData
-        });
-        
-        // Mock email sending with simulated delay
-        await new Promise(resolve => setTimeout(resolve, 500));
-        return true;
-      }
+      console.log('📧 Sending confirmation email via backend API:', {
+        to: emailData.to,
+        subject: emailData.subject,
+        inquiryType: emailData.inquiryType
+      });
 
-      // Send actual email using SendGrid API
-      const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      // Send email via backend API
+      const response = await fetch(`${backendUrl}/api/send-email`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          personalizations: [{
-            to: [{ email: emailData.to, name: emailData.customerName }]
-          }],
-          from: { 
-            email: 'info@backroomleeds.co.uk', 
-            name: 'The Backroom Leeds' 
-          },
-          reply_to: { 
-            email: 'info@backroomleeds.co.uk', 
-            name: 'The Backroom Leeds' 
-          },
+          to: emailData.to,
           subject: emailData.subject,
-          content: [{
-            type: 'text/plain',
-            value: emailData.content
-          }]
+          content: emailData.content,
+          customerName: emailData.customerName,
+          replyToEmail: 'admin@backroomleads.co.uk',
+          replyToName: 'The Backroom Leeds'
         })
       });
 
       if (response.ok) {
-        console.log('✅ Confirmation email sent successfully to:', emailData.to);
+        const result = await response.json();
+        console.log('✅ Confirmation email sent successfully:', {
+          to: emailData.to,
+          messageId: result.messageId
+        });
         return true;
       } else {
-        const errorData = await response.text();
-        console.error('❌ SendGrid API error:', response.status, errorData);
+        const errorData = await response.json();
+        console.error('❌ Backend email API error:', response.status, errorData);
         return false;
       }
     } catch (error) {
@@ -100,7 +83,7 @@ We'll confirm availability within 24 hours and let you know the next steps.
 
 Best regards,
 The Backroom Leeds Team
-info@backroomleeds.co.uk
+admin@backroomleads.co.uk
 0113 2438666`
         };
 
@@ -126,7 +109,7 @@ We'll review your requirements and provide a quote within 24-48 hours.
 
 Best regards,
 The Backroom Leeds Events Team
-info@backroomleeds.co.uk
+admin@backroomleads.co.uk
 0113 2438666`
         };
 
@@ -147,11 +130,11 @@ Application Details:
 
 We've received your application and will review it carefully. If your profile matches our requirements, we'll contact you within the next two weeks to discuss next steps.
 
-Please remember to email your CV to info@backroomleeds.co.uk with the subject "Job Application - ${formData.jobType}"
+Please remember to email your CV to admin@backroomleads.co.uk with the subject "Job Application - ${formData.jobType}"
 
 Best regards,
 The Backroom Leeds HR Team
-info@backroomleeds.co.uk`
+admin@backroomleads.co.uk`
         };
 
       case 'general':
@@ -171,7 +154,7 @@ ${inquiryType === 'feedback' ? 'We really appreciate you taking the time to shar
 
 Best regards,
 The Backroom Leeds Team
-info@backroomleeds.co.uk
+admin@backroomleads.co.uk
 0113 2438666`
         };
 
@@ -191,27 +174,17 @@ The Backroom Leeds Team`
     }
   },
 
-  // Send admin notification email
+  // Send admin notification email via backend API
   async sendAdminNotification(formData: any, inquiryType: string): Promise<boolean> {
     try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3002';
       const customerName = `${formData.firstName} ${formData.lastName}`;
-      const apiKey = import.meta.env.VITE_SENDGRID_API_KEY;
       
-      if (!apiKey) {
-        console.log('📧 SendGrid API key not configured, using mock admin notification:', {
-          to: 'info@backroomleeds.co.uk',
-          subject: `New ${inquiryType} - ${customerName}`,
-          from: 'noreply@backroomleeds.co.uk',
-          data: {
-            inquiryType,
-            customerName,
-            customerEmail: formData.email,
-            submittedAt: new Date().toLocaleString(),
-            details: formData
-          }
-        });
-        return true;
-      }
+      console.log('📧 Sending admin notification via backend API:', {
+        inquiryType,
+        customerName,
+        customerEmail: formData.email
+      });
 
       // Generate admin email content
       const adminContent = `
@@ -261,39 +234,31 @@ Message Details:
 Please log into the admin dashboard to view and respond to this ${inquiryType.toLowerCase()}.
       `.trim();
 
-      // Send actual admin notification using SendGrid API
-      const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      // Send admin notification via backend API
+      const response = await fetch(`${backendUrl}/api/send-email`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          personalizations: [{
-            to: [{ email: 'info@backroomleeds.co.uk', name: 'The Backroom Leeds Admin' }]
-          }],
-          from: { 
-            email: 'noreply@backroomleeds.co.uk', 
-            name: 'Website Notifications' 
-          },
-          reply_to: { 
-            email: formData.email, 
-            name: customerName 
-          },
+          to: 'admin@backroomleads.co.uk',
           subject: `New ${inquiryType} - ${customerName}`,
-          content: [{
-            type: 'text/plain',
-            value: adminContent
-          }]
+          content: adminContent,
+          customerName: 'The Backroom Leeds Admin',
+          replyToEmail: formData.email,
+          replyToName: customerName
         })
       });
 
       if (response.ok) {
-        console.log('✅ Admin notification sent successfully');
+        const result = await response.json();
+        console.log('✅ Admin notification sent successfully:', {
+          messageId: result.messageId
+        });
         return true;
       } else {
-        const errorData = await response.text();
-        console.error('❌ SendGrid admin notification error:', response.status, errorData);
+        const errorData = await response.json();
+        console.error('❌ Admin notification API error:', response.status, errorData);
         return false;
       }
     } catch (error) {
