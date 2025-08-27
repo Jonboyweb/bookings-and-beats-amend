@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useTableBookingPayment } from "@/hooks/useTableBookingPayment";
 import { supabaseService } from "@/lib/supabase";
+import { emailService } from "@/lib/emailService";
 import type { PrivateHireInquiry, CareerApplication, GeneralInquiry } from "@/lib/supabase";
 import { 
   MapPin, 
@@ -331,6 +332,13 @@ const Contact = () => {
           const result = await supabaseService.createPrivateHireInquiry(privateHireData);
           console.log('Private hire inquiry created:', result);
           
+          // Send confirmation email to customer
+          const emailData = emailService.generateEmailContent(formData, 'private-hire');
+          await emailService.sendConfirmationEmail(emailData);
+          
+          // Send admin notification
+          await emailService.sendAdminNotification(formData, 'Private Hire');
+          
         } else if (activeTab === 'careers') {
           const careerData: Omit<CareerApplication, 'id' | 'created_at'> = {
             applicant_first_name: formData.firstName,
@@ -347,6 +355,13 @@ const Contact = () => {
           const result = await supabaseService.createCareerApplication(careerData);
           console.log('Career application created:', result);
           
+          // Send confirmation email to applicant
+          const emailData = emailService.generateEmailContent(formData, 'careers');
+          await emailService.sendConfirmationEmail(emailData);
+          
+          // Send admin notification
+          await emailService.sendAdminNotification(formData, 'Career Application');
+          
         } else if (activeTab === 'general' || activeTab === 'feedback') {
           const generalData: Omit<GeneralInquiry, 'id' | 'created_at'> = {
             customer_first_name: formData.firstName,
@@ -361,6 +376,13 @@ const Contact = () => {
           
           const result = await supabaseService.createGeneralInquiry(generalData);
           console.log('General inquiry created:', result);
+          
+          // Send confirmation email to customer
+          const emailData = emailService.generateEmailContent(formData, activeTab as 'general' | 'feedback');
+          await emailService.sendConfirmationEmail(emailData);
+          
+          // Send admin notification
+          await emailService.sendAdminNotification(formData, activeTab === 'general' ? 'General Enquiry' : 'Feedback');
         }
         
         // Show success message

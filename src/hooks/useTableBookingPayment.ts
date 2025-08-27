@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { supabaseService } from '@/lib/supabase';
+import { emailService } from '@/lib/emailService';
 import type { TableBooking } from '@/lib/supabase';
 
 // Load Stripe with your actual publishable key
@@ -123,6 +124,13 @@ export const useTableBookingPayment = () => {
 
         const savedBooking = await supabaseService.createTableBooking(supabaseBookingData);
         console.log('Booking saved to database:', savedBooking);
+        
+        // Send confirmation email to customer
+        const emailData = emailService.generateEmailContent(bookingData, 'table-bookings');
+        await emailService.sendConfirmationEmail(emailData);
+        
+        // Send admin notification
+        await emailService.sendAdminNotification(bookingData, 'Table Booking');
       } catch (dbError) {
         console.error('Failed to save booking to database:', dbError);
         // Continue with the flow even if database save fails
