@@ -5,16 +5,28 @@ import { Music, Headphones, Calendar, Users } from "lucide-react";
 const Artists = () => {
   const featuredArtists = [
     {
+      name: "Dan Hills (@danhillsonline)",
+      genre: "RnB, Hip Hop, House, Garage", 
+      description: "Shhh! Saturday night resident DJ with years of experience crafting the perfect party atmosphere. Master of crowd control and peak-time energy.",
+      achievements: ["Shhh! resident DJ", "Saturday night specialist", "Experienced crowd reader"]
+    },
+    {
+      name: "DJ Flex (@onlydjflex)",
+      genre: "RnB, Hip Hop, House, Garage",
+      description: "La Fiesta resident DJ bringing energy and versatility to Friday nights. Known for seamless mixing and keeping the crowd engaged all night long.",
+      achievements: ["La Fiesta resident DJ", "Friday night regular", "Versatile mixing specialist"]
+    },
+    {
+      name: "Vybz In Da House (@vybzindahouse)",
+      genre: "RnB, Hip Hop, House, Garage",
+      description: "Dynamic Shhh! Saturday resident bringing high-energy sets and infectious vibes. Known for creating unforgettable moments on the dancefloor.",
+      achievements: ["Shhh! resident DJ", "High-energy specialist", "Saturday night favorite"]
+    },
+    {
       name: "DJ CP (@djcp01)",
       genre: "RnB, Hip Hop, House, Garage",
       description: "Resident DJ for Shhh! Saturday nights since 2012. One of Leeds' most established names in RnB and Hip Hop, bringing energy to packed dancefloors every week.",
       achievements: ["Shhh! resident DJ", "10+ years at The Backroom", "Saturday night regular"]
-    },
-    {
-      name: "DJ Dyl (@djdyl)",
-      genre: "RnB, Hip Hop, International",
-      description: "Friday night resident for La Fiesta | Bella Gente. Specialist in international sounds and party vibes, guaranteed to get the crowd moving.",
-      achievements: ["La Fiesta resident DJ", "International music specialist", "Friday night favorite"]
     },
     {
       name: "DJ Indy (@djindyuk02)",
@@ -23,11 +35,11 @@ const Artists = () => {
       achievements: ["Multi-night resident", "Sunday Nostalgia host", "Crowd favorite"]
     },
     {
-      name: "DJ Diogo Vaz (@djdiogovaz)", 
-      genre: "Reggaeton, Latin, International",
-      description: "Bringing the heat to Friday's La Fiesta downstairs with authentic Latin sounds and reggaeton bangers that pack the dancefloor.",
-      achievements: ["Latin music specialist", "La Fiesta resident", "Downstairs floor expert"]
-    }
+      name: "DJ Dyl (@djdyl)",
+      genre: "RnB, Hip Hop, International",
+      description: "Friday night resident for La Fiesta | Bella Gente. Specialist in international sounds and party vibes, guaranteed to get the crowd moving.",
+      achievements: ["La Fiesta resident DJ", "International music specialist", "Friday night favorite"]
+    },
   ];
 
   const musicStyles = [

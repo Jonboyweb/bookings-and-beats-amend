@@ -5,27 +5,27 @@ const Events = () => {
   const upcomingEvents = [
     {
       id: 1,
-      title: "Shhh!",
-      date: "Every Saturday", 
-      time: "11:00 PM - 6:00 AM",
-      description: "Est. 2012. Leeds' longest running weekly RnB party! Two floors of music with RnB, Hip Hop, House & Garage upstairs and eclectic sounds downstairs.",
-      capacity: "350 guests",
-      status: "Est. 2012",
-      image: "/venue-assets/event-artwork/shhh-saturday-event-art.jpg",
-      djs: "@djcp01, @danhillsonline, @djindyuk02, @vybzindahouse",
-      floors: "Upstairs: RnB, Hip Hop, House, Garage | Downstairs: Eclectic"
-    },
-    {
-      id: 2,
       title: "La Fiesta | Bella Gente", 
       date: "Every Friday",
       time: "11:00 PM - 6:00 AM",
       description: "The city's best International Fiesta! Two floors of music with 4 DJs and live dancers. RnB/Hip Hop upstairs, Reggaeton/Latin downstairs.",
-      capacity: "350 guests",
+      capacity: "500 guests",
       status: "Weekly Fiesta",
       image: "/venue-assets/event-artwork/bella-gente-friday-event-art.jpeg",
       djs: "@djdyl, @djdiogovaz, @djborris_paulo, @onlydjflex",
       floors: "Upstairs: RnB/Hip Hop | Downstairs: Reggaeton/Latin"
+    },
+    {
+      id: 2,
+      title: "Shhh!",
+      date: "Every Saturday", 
+      time: "11:00 PM - 6:00 AM",
+      description: "Est. 2012. Leeds' longest running weekly RnB party! Two floors of music with RnB, Hip Hop, House & Garage upstairs and eclectic sounds downstairs.",
+      capacity: "500 guests",
+      status: "Est. 2012",
+      image: "/venue-assets/event-artwork/shhh-saturday-event-art.jpg",
+      djs: "@djcp01, @danhillsonline, @djindyuk02, @vybzindahouse",
+      floors: "Upstairs: RnB, Hip Hop, House, Garage | Downstairs: Eclectic"
     },
     {
       id: 3,
