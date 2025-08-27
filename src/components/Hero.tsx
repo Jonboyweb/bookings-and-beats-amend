@@ -6,7 +6,7 @@ const Hero = () => {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(/venue-assets/images/upstairs-dance-floor-club-night.jpg)` }}
+        style={{ backgroundImage: `url(venue-assets/images/upstairs-dance-floor-club-night-3.jpg` }}
       >
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
@@ -21,14 +21,14 @@ const Hero = () => {
         </h1>
         <div className="w-32 h-px bg-gradient-primary mx-auto mb-6"></div>
         <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-4 font-sans">
-          Hidden Speakeasy Bar & Event Space
+          Hidden Speakeasy Event Space
         </p>
         <p className="text-base sm:text-lg text-muted-foreground mb-4 max-w-3xl mx-auto leading-relaxed">
           Located under the railway bridge at 50a Call Lane, Leeds. A vibrant split-level venue 
           showcasing the North's top DJ talent until 6am every weekend.
         </p>
         <p className="text-sm sm:text-base text-primary mb-12 font-semibold">
-          18+ | Open Until 6am | Two Floors | 500 Capacity
+          Open Until 6am | Two Floors | 500 Capacity
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
