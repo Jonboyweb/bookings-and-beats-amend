@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Users, Music, Utensils, Calendar, Star, Building2 } from "lucide-react";
+import { Users, Music, Utensils, Calendar, Star, Building2, Download } from "lucide-react";
 
 const PrivateHire = () => {
   const venueFeatures = [
@@ -11,13 +11,13 @@ const PrivateHire = () => {
     },
     {
       icon: Users,
-      title: "Room One - 150 capacity", 
-      description: "Upstairs private room with own bar, ample seating, A/C, accessible entrance & toilet"
+      title: "Private Room - 150 capacity", 
+      description: "Downstairs private room with own bar, ample seating, A/C, DJ booth, accessible entrance & toilet"
     },
     {
       icon: Music,
-      title: "Room Two - 350 capacity",
-      description: "Main bar & dance floor with state-of-art lighting, DJ booth, outdoor access"
+      title: "Main Room - 350 capacity",
+      description: "Main bar & large dance floor with state-of-art lighting, DJ booth, outdoor access"
     },
     {
       icon: Utensils,
@@ -151,12 +151,26 @@ const PrivateHire = () => {
             Contact our events team to discuss your requirements and receive a bespoke quote 
             tailored to your celebration or corporate event.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Button variant="primary" size="lg">
               Request Quote
             </Button>
             <Button variant="outline" size="lg">
               View Gallery
+            </Button>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="outline" size="lg" asChild>
+              <a href="/venue-assets/bottle-menu-and-brochures/Backroom-Private-Hire-Brochure.pdf" download>
+                <Download className="w-4 h-4 mr-2" />
+                Private Hire Brochure
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <a href="/venue-assets/bottle-menu-and-brochures/Backroom-Xmas-Brochure.pdf" download>
+                <Download className="w-4 h-4 mr-2" />
+                Christmas Brochure
+              </a>
             </Button>
           </div>
         </div>
